@@ -61,7 +61,7 @@ def getOccurances(phrase, count_dups=False, print_matches=False, match_exactly=F
 				else:
 					count = text.count(phrase)
 			if count > 0 and (print_matches or print_user == user):
-				print user, ':', original_text
+				print(user, ':', original_text)
 			if count_dups:
 				return min(count, 1)
 			else:
@@ -76,7 +76,7 @@ def numChars(user, text):
 
 """ Reads the CSV file and passes the content to process_msg_func """
 def readCsv(fname, process_msg_func=None):
-	f = open(fname, 'rU')
+	f = open(fname, 'r')
 	reader = csv.reader(f)
 	count = 0
 	d = {}
@@ -116,7 +116,7 @@ compact - don't return the total num of messages and percentage
 def getStats(data, include_groupme=False, total=True, percent=True, compact=True):
 	l = []
 	num_people = total_msgs = total_data_per_person = total_data = 0
-	for k,v in data.iteritems():
+	for k,v in data.items():
 		if not include_groupme and str(k) == 'GroupMe':
 			continue
 		num_people += 1
@@ -158,16 +158,16 @@ if __name__ == "__main__":
 								  match_exactly=args.match_exactly,
 								  print_user=args.print_user)
 						)
-		print getStats(result,
+		print(getStats(result,
 					   include_groupme=args.include_groupme,
 					   total=(not args.average), 
 					   compact=(not args.no_compact)
-					  )
+					  ))
 	else:
-		print showStats(csv_file,
+		print(showStats(csv_file,
 						None,
 						include_groupme=args.include_groupme,
 					   	total=(not args.average), 
 					   	compact=(not args.no_compact)
-					   	)
+					   	))
 	
